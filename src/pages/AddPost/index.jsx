@@ -8,17 +8,15 @@ import { useNavigate, Navigate, useParams } from "react-router-dom";
 import "easymde/dist/easymde.min.css";
 import styles from "./AddPost.module.scss";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectIsAuth } from "../../redux/slices/auth";
 import instance from "../../axios";
 
 export const AddPost = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
   const [text, setText] = React.useState("");
-  const [isLoading, setLoading] = React.useState(false);
   const [title, setTitle] = React.useState("");
   const [tags, setTags] = React.useState("");
   const [imageUrl, setImageUrl] = React.useState("");
@@ -52,7 +50,6 @@ export const AddPost = () => {
 
   const onSubmit =  async () => {
     try {
-      setLoading(true);
 
       const fields = {
         title,
